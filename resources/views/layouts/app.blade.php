@@ -15,6 +15,11 @@
     <!-- Scripts -->
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <!-- FullCalendar CSS -->
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css' rel='stylesheet' />
+
+    <!-- FullCalendar JavaScript -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js'></script>
 
 </head>
 

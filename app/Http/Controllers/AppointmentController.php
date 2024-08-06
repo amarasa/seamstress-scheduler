@@ -36,11 +36,13 @@ class AppointmentController extends Controller
 
         // Generate available time slots
         $availableSlots = [];
-        for ($time = $start; $time->lessThanOrEqualTo($end); $time->addMinutes($duration)) {
+        $interval = 30; // Check every 30 minutes for both 30 and 60 minute durations
+
+        for ($time = $start; $time->lessThan($end); $time->addMinutes($interval)) {
             $slotStart = $time->format('H:i');
             $slotEnd = $time->copy()->addMinutes($duration)->format('H:i');
 
-            // Check if any part of the time slot is blocked
+            // Check if the entire slot (from start to end) is free
             $isBlocked = false;
             for ($t = $time->copy(); $t->format('H:i') < $slotEnd; $t->addMinute()) {
                 if (in_array($t->format('H:i'), $blockedSlots)) {
@@ -56,6 +58,9 @@ class AppointmentController extends Controller
 
         return response()->json($availableSlots);
     }
+
+
+
 
     public function store(Request $request)
     {

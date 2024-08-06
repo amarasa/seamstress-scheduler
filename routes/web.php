@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SeamstressController;
 use App\Http\Controllers\AppointmentController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EventController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,6 +22,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/schedule', [SeamstressController::class, 'schedule'])->name('schedule');
     Route::get('/available-slots', [AppointmentController::class, 'availableSlots'])->name('appointments.available-slots');
     Route::post('/appointments', [AppointmentController::class, 'store'])->name('appointments.store');
+
+    Route::get('/api/events', [EventController::class, 'index']);
 });
 
 require __DIR__ . '/auth.php';
