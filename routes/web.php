@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SeamstressController;
+use App\Http\Controllers\AppointmentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,6 +19,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/schedule', [SeamstressController::class, 'schedule'])->name('schedule');
+    Route::get('/available-slots', [AppointmentController::class, 'availableSlots'])->name('appointments.available-slots');
+    Route::post('/appointments', [AppointmentController::class, 'store'])->name('appointments.store');
 });
 
 require __DIR__ . '/auth.php';

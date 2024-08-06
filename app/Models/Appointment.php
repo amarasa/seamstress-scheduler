@@ -16,6 +16,7 @@ class Appointment extends Model
         'custom_service',
         'appointment_type',
         'appointment_datetime',
+        'duration',
     ];
 
     protected $casts = [
